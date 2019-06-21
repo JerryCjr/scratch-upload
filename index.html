@@ -7,9 +7,16 @@
 </head>
 
 <body>
-    <form action="/scratch_upload/uploadmultiple" enctype="multipart/form-data" method="POST">
+    <!-- 多个文件上传 -->
+    <form action="/uploadmultiple" enctype="multipart/form-data" method="POST">
         <input type="file" name="myFiles" multiple>
         <input type="submit" value="Upload your files" />
+    </form>
+
+    <!-- 图片上传 -->
+    <form action="/uploadphoto" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myImage" accept="image/*">
+        <input type="submit" value="Upload Photo">
     </form>
 </body>
 
