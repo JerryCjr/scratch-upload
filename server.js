@@ -21,14 +21,19 @@ app.get('/', function (req, res) {
 });
 
 app.post('/scratch_upload/uploadmultiple', upload.array('myFiles', 12), (req, res, next) => {
-    var files = req.files
+    var files = req.files;
+    var fileName;
     if (!files) {
         var error = new Error('Please choose files')
         error.httpStatusCode = 400
         return next(error)
     }
-
-    res.send(files)
+    if (files && files.length) {
+        fileName = files[0].originalname;
+        res.redirect(`http://m.dev.babyfs.cn/scratch/scratch_player/player.html?file=${fileName}`)
+    } else {
+        res.send(files)
+    }
 })
 
-app.listen(3000, () => console.log('Server started on port 3000'));
+app.listen(3000, '0.0.0.0', () => console.log('Server started on port 3000'));
